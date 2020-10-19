@@ -1,0 +1,77 @@
+@import "_breakpoint";
+
+@keyframes passing-bar{
+	0% {
+		left: 0;
+		width: 0;
+	}
+	50% {
+		left: 0;
+		width: 100%;
+	}
+	51% {
+		left: 0;
+		width: 100%;
+	}
+	100% {
+		left: 100%;
+		width: 0;
+	}
+}
+@keyframes passing-contents{
+	0% { opacity:0; }
+	50% { opacity:0; }
+	100% { opacity:1; }
+}
+
+section {
+    height: 200vh;
+    .passing-wrap {
+        height: 100vh;
+        .passing {
+            width: 80%;
+            @include large {
+                width: 50%;
+            }
+            &-box {
+                display: block;
+                text-align: center;
+            }
+            &-bar {
+                position: relative;
+                display: inline-block;
+                transform: translate3d(0, 0, 0);
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    width: 0;
+                    height: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    z-index: 1;
+                    background: #000;
+                }
+            }
+            &-contents {
+                opacity: 0;
+                transform: translate3d(0, 0, 0);
+                font-size: 4.0rem;
+                font-weight: bold;
+                line-height: 1.5;
+                letter-spacing: .5rem;
+            }
+            &.move {
+                .passing-bar:before {
+                    animation: passing-bar 1s ease 0s 1 normal forwards;
+                }
+                .passing-contents {
+                    animation: passing-contents 0s ease .5s 1 normal forwards;
+                }    
+            }
+        }
+    }
+}
+
+
+
